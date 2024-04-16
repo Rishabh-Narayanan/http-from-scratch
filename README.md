@@ -18,3 +18,9 @@ it should be easy to add support for dynamic routes and more advanced features.
 To run the code, you can execute the main script in each folder. For example, you can execute `python main.py` to 
 start the server. The code was tested on Python 3.10+. Moreover, the implementation allows passing command line flags 
 for configuration. For example, `python main.py --host=127.0.0.1 --port=8080`. This is also the default configuration.
+
+Moreover, since the files are read from this directory as root, uploading and updating the files in this repository
+will automatically update the content on refresh.
+
+## Screenshots
+![](/images/site.png)
