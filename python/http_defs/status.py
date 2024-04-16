@@ -23,6 +23,9 @@ class Status:
 
     def internal_server_error():
         return Status(500, "Internal Server Error")
+    
+    def not_implemented():
+        return Status(501, "Not Implemented")
 
     def http_version_not_supported():
         return Status(505, "HTTP Version Not Supported")

@@ -17,5 +17,11 @@ if __name__ == "__main__":
         buffer_size_kb=flags.buffer_size_kb,
     )
 
-    server.start_server()
-    server.close_server()
+    try:
+        server.start_server()
+    except KeyboardInterrupt:
+        print("Server Interrupted... Exiting")
+    except Exception as e:
+        print("Fatal error... Exiting", e)
+    finally:
+        server.close_server()

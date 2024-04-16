@@ -43,6 +43,10 @@ class Server:
             res.set_status(Status.bad_request())
             return
 
+        if not req.method().isGET() and not req.method().isHEAD():
+            res.set_status(Status.not_implemented())
+            return
+
         # Current implementation only supports HTTP version 1.1
         if req.version().major() != 1 and req.version().minor() != 1:
             res.set_status(Status.http_version_not_supported())
@@ -58,18 +62,21 @@ class Server:
         if resource == "":
             res.set_status(Status.see_other())
             res.set_header("Location", "/index.html")
-        elif os.path.exists(resource):
-            with open(resource, "rb") as f:
+        else:
+            root = os.path.abspath("../static")
+            file_path = os.path.abspath(os.path.join(root, resource))
+
+            # Redirect to 404 if not found. Also ensure scoped to file_path to prevent path
+            # traversal attacks.
+            if not os.path.exists(file_path) or not file_path.startswith(root):
+                file_path = os.path.abspath(os.path.join("../static/", "404.html"))
+
+            with open(file_path, "rb") as f:
                 response_body = f.read()
-                if resource.endswith(".html"):
+                if file_path.endswith(".html"):
                     res.set_header("Content-Type", "text/html")
-                elif resource.endswith(".png"):
+                elif file_path.endswith(".png"):
                     res.set_header("Content-Type", "image/png")
-                elif resource.endswith(".css"):
+                elif file_path.endswith(".css"):
                     res.set_header("Content-Type", "text/css")
                 res.set_payload(response_body)
-        else:
-            res.set_status(Status.not_found())
-            with open("404.html", "rb") as f:
-                res.set_header("Content-Type", "text/html")
-                res.set_payload(f.read())
