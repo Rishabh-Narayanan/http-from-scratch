@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles.css" />
     <title>Hello World!</title>
+		<script src="/script.js"></script>
   </head>
   <body>
     <h1>Hello From Server!</h1>
@@ -13,11 +14,23 @@
       scratch! Everything in this site is styled using CSS which is served by
       our http server!
     </p>
-    <img src="/image.png" alt="Internet Icon" />
-    <p>The static image above is also hosted by and fetched from the server.</p>
     <p>
       Click <a href="/does-not-exist" class="error-link">here</a> to go to a
       route that doesn't exist.
     </p>
+    <img src="/image.png" alt="Internet Icon PNG" />
+    <img src="/flowers.jpeg" alt="Flower Image JPG" />
+    <p>
+      The static images above are also hosted by and fetched from the server.
+      Moreover, the <a href="/image.png">Internet image</a> is a png, while the
+      <a href="/flowers.jpeg">flower image</a> is jpg.
+    </p>
+    <p><a href="/data.json">JSON</a>? No problem! <button id="alert-button">JavaScript?</button> Also no problem!</p>
+    <p>
+      If you're interested in the HTTP protocol, try reading up on the
+      <a href="/rfc2616.pdf">RFC.</a> (also hosted on the server). Note that
+      fetching larger PDFs may have noticeable latency.
+    </p>
+
   </body>
 </html>

@@ -1,5 +1,6 @@
 import os
 import socket
+import mimetypes
 
 from http_defs.request import Request
 from http_defs.response import Response
@@ -73,10 +74,8 @@ class Server:
 
             with open(file_path, "rb") as f:
                 response_body = f.read()
-                if file_path.endswith(".html"):
-                    res.set_header("Content-Type", "text/html")
-                elif file_path.endswith(".png"):
-                    res.set_header("Content-Type", "image/png")
-                elif file_path.endswith(".css"):
-                    res.set_header("Content-Type", "text/css")
+                mime_type, encoding = mimetypes.guess_type(file_path)
+                if not mime_type:
+                    mime_type = "application/octet-stream"
+                res.set_header("Content-Type", mime_type)
                 res.set_payload(response_body)
