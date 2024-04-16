@@ -13,17 +13,8 @@ it should be easy to add support for dynamic routes and more advanced features.
 - [x] Serve 404 pages on missing resources
 - [x] Basic validation for malformed requests
 
-## Programming Languages
-
-The goal of this repository is to create a basic implementation in various different programming languages.
-Currently, implemented languages include:
-
-- [x] Python (tested on Python 3.10+)
-
 ## Running
 
-To run the code, you can execute the main script in each folder. For example, for python, you can execute
-`python main.py` from within the `python/` folder.
-
-Moreover, each implementation will take in command line flags for configuration. For example, with python,
-you can execute `python main.py --host=127.0.0.1 --port=8080` to start the server. This is the default configuration.
+To run the code, you can execute the main script in each folder. For example, you can execute `python main.py` to 
+start the server. The code was tested on Python 3.10+. Moreover, the implementation allows passing command line flags 
+for configuration. For example, `python main.py --host=127.0.0.1 --port=8080`. This is also the default configuration.
